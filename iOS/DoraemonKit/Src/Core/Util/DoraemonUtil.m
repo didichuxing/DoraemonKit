@@ -297,14 +297,29 @@
 
 + (UIWindow *)getKeyWindow{
     UIWindow *keyWindow = nil;
-    if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
-        keyWindow = [[UIApplication sharedApplication].delegate window];
-    }else{
-        NSArray *windows = [UIApplication sharedApplication].windows;
-        for (UIWindow *window in windows) {
-            if (!window.hidden) {
-                keyWindow = window;
+#if defined(__IPHONE_13_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0)
+    if (@available(iOS 13.0, *)) {
+        for (UIWindowScene *scene in UIApplication.sharedApplication.connectedScenes) {
+            if (scene.activationState == UISceneActivationStateForegroundActive) {
+                if ([scene.delegate conformsToProtocol:@protocol(UIWindowSceneDelegate)]) {
+                    id<UIWindowSceneDelegate> delegate = (id<UIWindowSceneDelegate>)scene.delegate;
+                    keyWindow = delegate.window;
+                }
                 break;
+            }
+        }
+    }
+#endif
+    if (!keyWindow) {
+        if ([[UIApplication sharedApplication].delegate respondsToSelector:@selector(window)]) {
+            keyWindow = [[UIApplication sharedApplication].delegate window];
+        }else{
+            NSArray *windows = [UIApplication sharedApplication].windows;
+            for (UIWindow *window in windows) {
+                if (!window.hidden) {
+                    keyWindow = window;
+                    break;
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ target 'DoraemonKitDemo' do
   pod 'SDWebImageWebPCoder', '~> 0.8'
   # pod 'FBRetainCycleDetector', '~> 0.1'
   # FBRetainCycleDetector ~> 0.2 版本无法在 Xcode 12 编译通过
-  pod 'FBRetainCycleDetector', :git => 'git@github.com:facebook/FBRetainCycleDetector.git', :branch => 'master'
+  pod 'FBRetainCycleDetector', :git => 'git@github.com:facebook/FBRetainCycleDetector.git', :branch => 'main'
   # pod 'fishhook', '~> 0.2'
   pod 'YYDebugDatabase', '~> 2.1'
   pod 'Masonry', '0.6.3'

@@ -14,38 +14,34 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - CocoaAsyncSocket (7.6.5)
-  - CocoaHTTPServer (2.3):
-    - CocoaAsyncSocket
-    - CocoaLumberjack
-  - CocoaLumberjack (3.7.2):
-    - CocoaLumberjack/Core (= 3.7.2)
-  - CocoaLumberjack/Core (3.7.2)
-  - DoraemonKit/Core (3.1.2):
-    - AFNetworking
+  - CocoaLumberjack (3.7.4):
+    - CocoaLumberjack/Core (= 3.7.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - DoraemonKit/Core (3.1.3):
     - FMDB
     - GCDWebServer
     - GCDWebServer/WebDAV
     - GCDWebServer/WebUploader
-  - DoraemonKit/WithDatabase (3.1.2):
+  - DoraemonKit/Foundation (3.1.3):
+    - Mantle (~> 2.2)
+    - SocketRocket (~> 0.6)
+  - DoraemonKit/WithDatabase (3.1.3):
     - DoraemonKit/Core
     - YYDebugDatabase
-  - DoraemonKit/WithGPS (3.1.2):
+  - DoraemonKit/WithGPS (3.1.3):
     - DoraemonKit/Core
-  - DoraemonKit/WithLoad (3.1.2):
+  - DoraemonKit/WithLoad (3.1.3):
     - DoraemonKit/Core
-  - DoraemonKit/WithLogger (3.1.2):
+  - DoraemonKit/WithLogger (3.1.3):
     - CocoaLumberjack
     - DoraemonKit/Core
-  - DoraemonKit/WithMLeaksFinder (3.1.2):
+  - DoraemonKit/WithMLeaksFinder (3.1.3):
     - DoraemonKit/Core
     - FBRetainCycleDetector
-  - DoraemonKit/WithMultiControl (3.1.2):
-    - CocoaHTTPServer
-    - CocoaLumberjack
+  - DoraemonKit/WithMultiControl (3.1.3):
     - DoraemonKit/Core
-    - SocketRocket
-  - DoraemonKit/WithWeex (3.1.2):
+    - DoraemonKit/Foundation
+  - DoraemonKit/WithWeex (3.1.3):
     - DoraemonKit/Core
     - WeexSDK
     - WXDevtool
@@ -61,28 +57,31 @@ PODS:
   - GCDWebServer/WebUploader (3.5.4):
     - GCDWebServer/Core
   - JSONModel (1.8.0)
-  - libwebp (1.1.0):
-    - libwebp/demux (= 1.1.0)
-    - libwebp/mux (= 1.1.0)
-    - libwebp/webp (= 1.1.0)
-  - libwebp/demux (1.1.0):
+  - libwebp (1.2.3):
+    - libwebp/demux (= 1.2.3)
+    - libwebp/mux (= 1.2.3)
+    - libwebp/webp (= 1.2.3)
+  - libwebp/demux (1.2.3):
     - libwebp/webp
-  - libwebp/mux (1.1.0):
+  - libwebp/mux (1.2.3):
     - libwebp/demux
-  - libwebp/webp (1.1.0)
+  - libwebp/webp (1.2.3)
+  - Mantle (2.2.0):
+    - Mantle/extobjc (= 2.2.0)
+  - Mantle/extobjc (2.2.0)
   - Masonry (0.6.3)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
-  - SDWebImageWebPCoder (0.8.2):
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
+  - SDWebImageWebPCoder (0.9.1):
     - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.10)
-  - SocketRocket (0.5.1)
+    - SDWebImage/Core (~> 5.13)
+  - SocketRocket (0.6.0)
   - WeexSDK (0.30.0)
   - WXDevtool (0.24.0):
     - SocketRocket
     - WeexSDK
-  - YYDebugDatabase (2.1.0):
+  - YYDebugDatabase (2.1.1):
     - FMDB
     - GCDWebServer
 
@@ -96,7 +95,7 @@ DEPENDENCIES:
   - DoraemonKit/WithMLeaksFinder (from `../../`)
   - DoraemonKit/WithMultiControl (from `../../`)
   - DoraemonKit/WithWeex (from `../../`)
-  - "FBRetainCycleDetector (from `git@github.com:facebook/FBRetainCycleDetector.git`, branch `master`)"
+  - "FBRetainCycleDetector (from `git@github.com:facebook/FBRetainCycleDetector.git`, branch `main`)"
   - JSONModel (~> 1.4)
   - Masonry (= 0.6.3)
   - SDWebImage (~> 5.11)
@@ -107,13 +106,12 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - CocoaAsyncSocket
-    - CocoaHTTPServer
     - CocoaLumberjack
     - FMDB
     - GCDWebServer
     - JSONModel
     - libwebp
+    - Mantle
     - Masonry
     - SDWebImage
     - SDWebImageWebPCoder
@@ -126,33 +124,32 @@ EXTERNAL SOURCES:
   DoraemonKit:
     :path: "../../"
   FBRetainCycleDetector:
-    :branch: master
+    :branch: main
     :git: "git@github.com:facebook/FBRetainCycleDetector.git"
 
 CHECKOUT OPTIONS:
   FBRetainCycleDetector:
-    :commit: 32c4afc1fc17553f9b69e4edd82cfa3c73dbb331
+    :commit: 8280d2337b6b399fdd82f717d4bf8ae0052d9241
     :git: "git@github.com:facebook/FBRetainCycleDetector.git"
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CocoaHTTPServer: 5624681fc3473d43b18202f635f9b3abb013b530
-  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
-  DoraemonKit: aa228d6cc263888f68dab6bd14507657397474c1
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  DoraemonKit: 7448814a80d9ca56bc8db9105c464b7ec2e62623
   FBRetainCycleDetector: 46daef95c2dfa9be34b53087edf6a8f34e4c749c
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
-  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
+  libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
+  Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
-  SDWebImageWebPCoder: f56ab499e3ea57dfeb6c3187dce183b10e160db0
-  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
+  SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
+  SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   WeexSDK: 8e01e33244f51cb11f9f000b5200d93de5f4fa97
   WXDevtool: 95b70c73c06fc3299d65bd53ba4b3e0b0087f3cb
-  YYDebugDatabase: e684a7f79fca2e3673a23347cefb822f911f3124
+  YYDebugDatabase: 2e815f2b5ba7ff49aa298ea265dec6a7aa4664ad
 
-PODFILE CHECKSUM: eb4dd1e6c68fe5acfa519a16e30fff7583e1ea69
+PODFILE CHECKSUM: 52ef7ccbafa3674920c1d3ae406092c710b9a8d9
 
 COCOAPODS: 1.11.3
