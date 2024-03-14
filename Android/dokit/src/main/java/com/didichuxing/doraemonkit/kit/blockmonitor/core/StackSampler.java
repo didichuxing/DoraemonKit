@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class StackSampler {
     private static final String TAG = "StackSampler";
-    private static final int DEFAULT_SAMPLE_INTERVAL = 300;
+    private static final int DEFAULT_SAMPLE_INTERVAL = 200;
     private static final int DEFAULT_MAX_ENTRY_COUNT = 100;
     private static final String SEPARATOR = "\r\n";
     private static final SimpleDateFormat TIME_FORMATTER =

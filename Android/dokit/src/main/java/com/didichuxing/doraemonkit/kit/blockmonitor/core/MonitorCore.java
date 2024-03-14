@@ -14,8 +14,11 @@ class MonitorCore implements Printer {
     private static final String TAG = "MonitorCore";
     /**
      * 卡顿阈值
+     * 该值必须大于 StackSampler 中的 DEFAULT_SAMPLE_INTERVAL 采样间隔
+     * 否则会出现 发现卡顿 但是采集不到堆栈的问题
+     *
      */
-    private static final int BLOCK_THRESHOLD_MILLIS = 200;
+    private static final int BLOCK_THRESHOLD_MILLIS = 250;
 
     private long mStartTime = 0;
     private long mStartThreadTime = 0;
