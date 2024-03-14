@@ -19,6 +19,7 @@ const store = new Store({
     mcHostWaitFetchRequestQueue:[],
     mcHostWaitFetchResponseQueue:[],
     isNative:false,
+    activeNodeKey: null,
   }
 })
 
@@ -49,6 +50,10 @@ export function toggleHighlight(flag){
 }
 export function toggleElement(element){
     store.state.highlightElement = element;
+}
+
+export function activeNodeTree(key){
+  store.state.activeNodeKey = key;
 }
 
 export function addIndependPlugin(plugin){

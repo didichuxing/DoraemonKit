@@ -36,6 +36,7 @@ import ElementDetails from './elementDetails.vue';
 import ElementSnippet from './elementSnippet.vue';
 // import MutationObserver from 'mutation-observer';
 import { guid, $bus } from '../../assets/util';
+import { debounce } from "../../assets/util";
 import { toggleElement } from '@dokit/web-core';
 export default {
   components: {
@@ -58,7 +59,11 @@ export default {
       active: 0,
     };
   },
+  created() {
+    this.watchWindowSize = debounce(this.watchWindowSize, 300);
+  },
   mounted() {
+    window.addEventListener("resize", this.watchWindowSize);
     this.node = this.getNode(document.documentElement);
     this.observer = new MutationObserver((mutations) => {
       for (let i = 0; i < mutations.length; i++) {
@@ -82,6 +87,7 @@ export default {
     },
   },
   destroyed() {
+    window.removeEventListener("resize", this.watchWindowSize);
     this.observer.disconnect();
   },
   watch: {
@@ -324,6 +330,14 @@ export default {
         return attrStyle;
       }
     },
+    watchWindowSize() {
+      this.node = this.getNode(document.documentElement);
+      this.oldElement = this.highlightElement
+      toggleElement(null);
+      this.$nextTick(() => {
+        toggleElement(this.oldElement);
+      });
+    }
   },
 };
 </script>

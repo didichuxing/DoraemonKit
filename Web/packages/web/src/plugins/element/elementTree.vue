@@ -15,7 +15,7 @@
         unfold ? 'dk-toggle' : '',
       ]"
     >
-      <span class="dkelm-node" @click="unfoldDetail">
+      <span class="dkelm-node"  :class="[isActived ? 'actived' : '']" @click="unfoldDetail">
         &lt;{{ node.tagName.toLowerCase() }}
         <i class="dkelm-k" v-if="node.className || node.attributes.length">
           <span v-for="(item, index) in node.attributes" :key="index">
@@ -33,7 +33,7 @@
           <ElementTree :node="child" :parentIsUnfold="unfold"></ElementTree>
         </div>
       </template>
-      <span class="dkelm-node" v-if="!isNullEndTag(node.tagName)"
+      <span class="dkelm-node" :class="[isActived ? 'actived' : '']" @click="unfoldDetail" v-if="!isNullEndTag(node.tagName)"
         >&lt;/{{ node.tagName.toLowerCase() }}&gt;</span
       >
     </div>
@@ -46,6 +46,7 @@
 <script>
 import ElementTree from "./elementTree.vue";
 import { $bus } from "../../assets/util";
+import { activeNodeTree } from '@dokit/web-core';
 export default {
   name: "ElementTree",
   components: {
@@ -82,6 +83,21 @@ export default {
       immediate: true,
     }
   },
+  computed:{
+    canFold() {
+      return this.node?.childNodes.length > 0;
+    },
+    isActived() {
+      console.log(this.activeNodeKey)
+      return this.activeNodeKey === this.node?.key
+    },
+    state() {
+      return this.$store.state;
+    },
+    activeNodeKey() {
+      return this.state.activeNodeKey;
+    },
+  },
   created() {
     if (this?.node?.tagName === "HTML") {
       $bus.on(this.node.key, this.refresh);
@@ -110,14 +126,9 @@ export default {
       return names.indexOf(tagName) > -1 ? true : false;
     },
     unfoldDetail() {
-      this.canFold()&&(this.unfold = !this.unfold);
-    },
-    canFold() {
-      if (this.node.childNodes.length > 0) {
-        return true;
-      }
-      return false;
-    },
+      this.canFold&&(this.unfold = !this.unfold);
+      activeNodeTree(this.node.key)
+    },  
     _trim(str) {
       return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
     },
@@ -129,6 +140,11 @@ export default {
 .element-tree-container {
   font-size: 16px;
   position: relative;
+  &.can-unfold{
+    &>.dkelm-l>.dkelm-node {
+      cursor: pointer;
+    }
+  }
   .dkelm-l {
     padding-left: 8px;
     position: relative;
@@ -158,6 +174,9 @@ export default {
   }
   .dkelm-node {
     color: #183691;
+    &.actived{
+      background: rgba(0, 0, 0, 0.1);
+    }
   }
   .dkelm-k {
     color: #0086b3;
