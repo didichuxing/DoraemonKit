@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   dokit:
     path: ..
-  dio: 4.0.0
+  dio: ">=4.0.0 <6.0.0"
   path_provider: ^2.0.1
 
 dev_dependencies:
