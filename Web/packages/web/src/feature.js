@@ -13,6 +13,8 @@ import HelloWorld from './components/ToolHelloWorld'
 import Resource from './plugins/resources/index'
 import ApiMock from './plugins/api-mock/index'
 import WebVitals from './plugins/web-vitals-time/index'
+import WidgetBorder from './plugins/widget-border/index'
+
 
 import {IndependPlugin, RouterPlugin} from '@dokit/web-core'
 
@@ -29,7 +31,7 @@ export const DokitFeatures = {
 
 export const UIFeatures = {
   title: '视觉功能',
-  list: [AlignRuler]
+  list: [AlignRuler, WidgetBorder]
   // list: [AlignRuler,
   // new RouterPlugin({
   //   nameZh: 'UI结构',
